@@ -1,2 +1,7 @@
 logs
 config.*
+_kindle
+_virgin
+*.pdf
+pyobs-env
+logging.json
