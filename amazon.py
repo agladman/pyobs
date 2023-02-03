@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import sys
 
+from config import AMAZON_FILE
 from helpers import string_to_date
 
 
@@ -48,7 +49,7 @@ def main():
     if "-t" in sys.argv:
         print(output)
     else:
-        file_out = Path("/Users/anthonygladman/Library/Mobile Documents/iCloud~md~obsidian/Documents/BibScrib/Household stuff/Amazon Purchases for YNAB.md")
+        file_out = Path(AMAZON_FILE)
         with file_out.open("a") as f:
             f.write(output)
         file_in.unlink()

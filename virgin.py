@@ -5,7 +5,7 @@ import sys
 
 from datetime import datetime as dt
 from pathlib import Path
-from config import VMFILE, MEDIADIR
+from config import VIRGIN_MEDIA_FILE, MEDIADIR
 from PyPDF2 import PdfReader
 
 from helpers import string_to_date
@@ -55,7 +55,7 @@ def main():
     if "-t" in sys.argv:
         print(output)
     else:
-        with Path(VMFILE).open("a") as f:
+        with Path(VIRGIN_MEDIA_FILE).open("a") as f:
             f.write(output)
 
 if __name__ == '__main__':

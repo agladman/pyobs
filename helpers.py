@@ -79,7 +79,7 @@ def get_byte_position(filename):
     return position
 
 def string_to_date(date_string):
-    "converts a date string to a datetime object"
+    "converts `date_string` to a datetime object"
     for fmt in ("%d %b %Y", "%d %B %Y", "%d %B %Y at %H:%M:%S %Z"):
         try:
             return dt.strptime(date_string, fmt)
