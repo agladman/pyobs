@@ -2,6 +2,7 @@ logs
 config.*
 _kindle
 _virgin
+_amazon
 *.pdf
 pyobs-env
 logging.json
