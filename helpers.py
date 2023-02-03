@@ -77,3 +77,12 @@ def get_byte_position(filename):
         print(f'exception occurred at position {position}')
         raise
     return position
+
+def string_to_date(date_string):
+    "converts a date string to a datetime object"
+    for fmt in ("%d %b %Y", "%d %B %Y", "%d %B %Y at %H:%M:%S %Z"):
+        try:
+            return dt.strptime(date_string, fmt)
+        except ValueError:
+            pass
+    raise ValueError("No valid date format found")

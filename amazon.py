@@ -9,6 +9,8 @@ from pathlib import Path
 import re
 import sys
 
+from helpers import string_to_date
+
 
 def extract_data(text, target=None):
     "searches the text for the designated target data"
@@ -31,7 +33,7 @@ def extract_data(text, target=None):
 
 def clean_date(date_string):
     "converts date string into formatted datetime object"
-    date_obj = dt.datetime.strptime(date_string, "%d %B %Y at %H:%M:%S %Z").date()
+    date_obj = string_to_date(date_string).date()
     return date_obj.strftime("%d %b %Y")
 
 def main():

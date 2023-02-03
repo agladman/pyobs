@@ -8,6 +8,8 @@ from pathlib import Path
 from config import VMFILE, MEDIADIR
 from PyPDF2 import PdfReader
 
+from helpers import string_to_date
+
 
 def get_pdf_text(filepath):
     """extracts text from the PDF at the given filepath
@@ -24,23 +26,14 @@ def match(pattern, text):
     else:
         return False
 
-def parse_dates(date_string):
-    "turns `date_string` into a datetime object"
-    for fmt in ("%d %b %Y", "%d %B %Y"):
-        try:
-            return dt.strptime(date_string, fmt)
-        except ValueError:
-            pass
-    raise ValueError("No valid date format found")
-
 def extract_data(text):
     "pulls out the useful bits"
     patterns = [
         re.compile("Bill date:\s+(\d{2} \w+ \d{4})"),   # bill date
         re.compile("Direct Debit date:\s+(\d{2} \w+ \d{4})"), # direct debit date
         re.compile("Amount due\s?£(\d{2,}\.\d{2})")]    # amount due
-    bill_date = parse_dates(match(patterns[0], text))
-    dd_date = parse_dates(match(patterns[1], text))
+    bill_date = string_to_date(match(patterns[0], text))
+    dd_date = string_to_date(match(patterns[1], text))
     amount_due = float(match(patterns[2], text))
     return (bill_date, dd_date, amount_due)
 
